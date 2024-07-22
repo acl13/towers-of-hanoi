@@ -19,8 +19,17 @@ function displayBoard() {
 function moveDisc(initialPeg, newPeg) {
   const initialArray = boardObject[initialPeg];
   const newArray = boardObject[newPeg];
-  newArray.push(initialArray[initialArray.length - 1]);
-  initialArray.splice(initialArray.length - 1);
+  if (
+    initialArray[initialArray.length - 1] < newArray[newArray.length - 1] ||
+    newArray.length === 0
+  ) {
+    newArray.push(initialArray[initialArray.length - 1]);
+    initialArray.splice(initialArray.length - 1);
+  } else {
+    console.log(
+      "A disc cannot be moved to a peg if it is larger than the topmost disc on that peg. Please try again."
+    );
+  }
 }
 
 moveDisc(1, 3);
@@ -28,4 +37,6 @@ displayBoard();
 moveDisc(3, 2);
 displayBoard();
 moveDisc(1, 2);
+displayBoard();
+moveDisc(1, 3);
 displayBoard();
