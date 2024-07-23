@@ -30,13 +30,61 @@ function moveDisc(initialPeg, newPeg) {
       "A disc cannot be moved to a peg if it is larger than the topmost disc on that peg. Please try again."
     );
   }
+  displayBoard();
+  checkWinner();
 }
 
+function checkWinner() {
+  const winCondition = [5, 4, 3, 2, 1];
+  if (
+    boardObject[2].toString() === winCondition.toString() ||
+    boardObject[3].toString() === winCondition.toString()
+  ) {
+    console.log("Congratulations! You win!");
+    console.log("New Game:");
+    resetBoard();
+    displayBoard();
+  }
+}
+
+function resetBoard() {
+  boardObject[1] = [5, 4, 3, 2, 1];
+  boardObject[2] = [];
+  boardObject[3] = [];
+}
+
+// This was my attempt at winning the game.
+
 moveDisc(1, 3);
-displayBoard();
 moveDisc(3, 2);
-displayBoard();
 moveDisc(1, 2);
-displayBoard();
 moveDisc(1, 3);
-displayBoard();
+moveDisc(2, 3);
+moveDisc(1, 2);
+moveDisc(3, 1);
+moveDisc(3, 2);
+moveDisc(1, 2);
+moveDisc(1, 3);
+moveDisc(2, 3);
+moveDisc(2, 1);
+moveDisc(3, 1);
+moveDisc(2, 3);
+moveDisc(1, 2);
+moveDisc(1, 3);
+moveDisc(2, 3);
+moveDisc(1, 2);
+moveDisc(3, 1);
+moveDisc(3, 2);
+moveDisc(1, 2);
+moveDisc(3, 1);
+moveDisc(2, 3);
+moveDisc(2, 1);
+moveDisc(3, 1);
+moveDisc(3, 2);
+moveDisc(1, 2);
+// moveDisc(1, 3);
+moveDisc(2, 3);
+moveDisc(1, 2);
+moveDisc(3, 1);
+moveDisc(3, 2);
+moveDisc(1, 2);
