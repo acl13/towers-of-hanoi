@@ -53,38 +53,59 @@ function resetBoard() {
   boardObject[3] = [];
 }
 
-// This was my attempt at winning the game.
+function solvePuzzle(n, origin, destination, auxiliary) {
+  const originArray = boardObject[origin];
+  const destinationArray = boardObject[destination];
 
-moveDisc(1, 3);
-moveDisc(3, 2);
-moveDisc(1, 2);
-moveDisc(1, 3);
-moveDisc(2, 3);
-moveDisc(1, 2);
-moveDisc(3, 1);
-moveDisc(3, 2);
-moveDisc(1, 2);
-moveDisc(1, 3);
-moveDisc(2, 3);
-moveDisc(2, 1);
-moveDisc(3, 1);
-moveDisc(2, 3);
-moveDisc(1, 2);
-moveDisc(1, 3);
-moveDisc(2, 3);
-moveDisc(1, 2);
-moveDisc(3, 1);
-moveDisc(3, 2);
-moveDisc(1, 2);
-moveDisc(3, 1);
-moveDisc(2, 3);
-moveDisc(2, 1);
-moveDisc(3, 1);
-moveDisc(3, 2);
-moveDisc(1, 2);
-moveDisc(1, 3);
-moveDisc(2, 3);
-moveDisc(1, 2);
-moveDisc(3, 1);
-moveDisc(3, 2);
-moveDisc(1, 2);
+  if (n === 0) {
+    return;
+  }
+
+  solvePuzzle(n - 1, origin, auxiliary, destination);
+
+  const currentPeg = board.find((arr) => arr.includes(n));
+  const currentDiscIndex = currentPeg.indexOf(n);
+  destinationArray.push(currentPeg[currentDiscIndex]);
+  originArray.splice(currentDiscIndex);
+  displayBoard();
+
+  solvePuzzle(n - 1, auxiliary, destination, origin);
+}
+
+solvePuzzle(5, 1, 3, 2);
+checkWinner();
+
+// This was my attempt at winning the game.
+// moveDisc(1, 3);
+// moveDisc(3, 2);
+// moveDisc(1, 2);
+// moveDisc(1, 3);
+// moveDisc(2, 3);
+// moveDisc(1, 2);
+// moveDisc(3, 1);
+// moveDisc(3, 2);
+// moveDisc(1, 2);
+// moveDisc(1, 3);
+// moveDisc(2, 3);
+// moveDisc(2, 1);
+// moveDisc(3, 1);
+// moveDisc(2, 3);
+// moveDisc(1, 2);
+// moveDisc(1, 3);
+// moveDisc(2, 3);
+// moveDisc(1, 2);
+// moveDisc(3, 1);
+// moveDisc(3, 2);
+// moveDisc(1, 2);
+// moveDisc(3, 1);
+// moveDisc(2, 3);
+// moveDisc(2, 1);
+// moveDisc(3, 1);
+// moveDisc(3, 2);
+// moveDisc(1, 2);
+// moveDisc(1, 3);
+// moveDisc(2, 3);
+// moveDisc(1, 2);
+// moveDisc(3, 1);
+// moveDisc(3, 2);
+// moveDisc(1, 2);
